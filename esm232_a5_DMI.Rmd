@@ -1,0 +1,41 @@
+---
+title: "esm232_a5_DMI"
+author: "Alex Ehrens, Bret Folger, Rich Viebrock"
+date: "5/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# attach packages
+library(tidyverse)
+library(deSolve)
+```
+
+### 1) Use ODE Solver to calculate population over with carrying capacity 
+```{r}
+source("kpop.R")
+
+# parameter list
+P_initial = 1
+years = seq(from=1, to=50, by=1)
+parms = list(r = 0.05, K = 20)
+
+# run ODE solver
+results=ode(y = P_initial, times = years, func = kpop, parms = parms)
+head(results)
+colnames(results)=c("year","P")
+```
+
+### 2) Graph population results
+```{r}
+# graph results
+ggplot(data = as.data.frame(results))+
+  geom_point(aes(x = year, y = P))+
+  theme_bw()+
+  labs(x = "Year",
+       y = "Population")
+```
+
+### END ASSIGNMENT 5
