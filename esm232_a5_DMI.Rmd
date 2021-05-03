@@ -13,7 +13,7 @@ library(tidyverse)
 library(deSolve)
 ```
 
-### 1) Use ODE Solver to calculate population over with carrying capacity 
+### 1) Use ODE Solver to calculate population with carrying capacity from derivative of equation
 ```{r}
 source("kpop.R")
 
